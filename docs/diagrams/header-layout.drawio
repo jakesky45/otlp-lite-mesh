@@ -1,0 +1,81 @@
+<mxfile host="app.diagrams.net" version="29.5.5">
+  <diagram name="Page-1" id="otlp-lite-mesh-header-layout">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Column headers: byte position within a 4-byte row -->
+        <mxCell id="col0" parent="1" vertex="1" value="byte 0" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=11;">
+          <mxGeometry x="160" y="60" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="col1" parent="1" vertex="1" value="byte 1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=11;">
+          <mxGeometry x="280" y="60" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="col2" parent="1" vertex="1" value="byte 2" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=11;">
+          <mxGeometry x="400" y="60" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="col3" parent="1" vertex="1" value="byte 3" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=11;">
+          <mxGeometry x="520" y="60" width="120" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Row 0: offset 0x00 -->
+        <mxCell id="off0" parent="1" vertex="1" value="0x00" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;rounded=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=11;">
+          <mxGeometry x="90" y="80" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="magic" parent="1" vertex="1" value="Magic&lt;br&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;0x4F  'O'&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;strokeColor=#788AA3;fillColor=#FFFFFF;">
+          <mxGeometry x="160" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="version" parent="1" vertex="1" value="Version&lt;br&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;0x01&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;strokeColor=#788AA3;fillColor=#FFFFFF;">
+          <mxGeometry x="280" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="datatype" parent="1" vertex="1" value="DataType&lt;br&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;0x03 = span&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;strokeColor=#788AA3;fillColor=#FFFFFF;">
+          <mxGeometry x="400" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="flags" parent="1" vertex="1" value="Flags&lt;br&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;0b00000011&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;strokeColor=#788AA3;fillColor=#FFFFFF;">
+          <mxGeometry x="520" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Rows 1-4: offset 0x04..0x13 NodeID -->
+        <mxCell id="off4" parent="1" vertex="1" value="0x04&lt;br&gt;…&lt;br&gt;0x13" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;rounded=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=11;">
+          <mxGeometry x="90" y="140" width="60" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="nodeid" parent="1" vertex="1" value="NodeID  (16 bytes, 4 rows)&lt;br&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;00 11 22 33 44 55 66 77 88 99 aa bb cc dd ee ff&lt;br&gt;shown as 00112233-4455-6677-8899-aabbccddeeff&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#393C56;strokeColor=#788AA3;fillColor=#B2C9AB;">
+          <mxGeometry x="160" y="140" width="480" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- Row 5: offset 0x14 PayloadLen -->
+        <mxCell id="off20" parent="1" vertex="1" value="0x14" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;rounded=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=11;">
+          <mxGeometry x="90" y="260" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="payloadlen" parent="1" vertex="1" value="PayloadLen  (4 bytes, big-endian)&lt;br&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;00 00 00 0a  =  10&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;strokeColor=#788AA3;fillColor=#F2CC8F;">
+          <mxGeometry x="160" y="260" width="480" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Row 6: offset 0x18 Payload -->
+        <mxCell id="off24" parent="1" vertex="1" value="0x18&lt;br&gt;…" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;rounded=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=11;">
+          <mxGeometry x="90" y="320" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="payload" parent="1" vertex="1" value="Payload  (PayloadLen bytes)&lt;br&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;68 65 6c 6c 6f 20 6d 65 73 68  =  &quot;hello mesh&quot;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;dashed=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;strokeColor=#788AA3;fillColor=#FFFFFF;">
+          <mxGeometry x="160" y="320" width="480" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Brace label: header is 24 bytes -->
+        <mxCell id="brace" parent="1" vertex="1" value="24-byte header, always the same shape" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#E07A5F;fontSize=11;">
+          <mxGeometry x="660" y="80" width="150" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="bracearrow" parent="1" edge="1" style="endArrow=none;startArrow=none;html=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;strokeColor=#E07A5F;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="80" as="sourcePoint" />
+            <mxPoint x="650" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Flags detail -->
+        <mxCell id="flagsnote" parent="1" vertex="1" value="Flags, bit by bit (bit 0 is the rightmost):&lt;br&gt;bit 0 compressed · bit 1 zstd (else gzip) · bit 2 sealed · bits 3-7 reserved, must be 0&lt;br&gt;0b00000011 = compressed + zstd" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;rounded=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=11;">
+          <mxGeometry x="160" y="400" width="480" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
