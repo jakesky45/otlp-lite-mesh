@@ -11,7 +11,6 @@ package main
 
 import (
 	"encoding/hex"
-	"errors"
 	"flag"
 	"fmt"
 	"io"
@@ -123,6 +122,9 @@ func hexBytes(b []byte) string {
 }
 
 func describeMagic(data []byte) string {
+	if len(data) == 0 {
+		return "missing"
+	}
 	if data[0] == frame.Magic {
 		return "'O' ok"
 	}
@@ -150,7 +152,10 @@ func describeFlags(data []byte) string {
 	f := frame.Flags(data[3])
 	s := fmt.Sprintf("0b%08b %s", uint8(f), f)
 	if err := f.Validate(); err != nil {
-		s += " (" + errors.Unwrap(err).Error() + ")"
+		// Not errors.Unwrap(err): some Validate errors are bare sentinels
+		// with nothing inside, and Unwrap would return nil. Found by piping
+		// a frame with Flags=0x02 into meshdump and watching it panic.
+		s += " (" + err.Error() + ")"
 	}
 	return s
 }
