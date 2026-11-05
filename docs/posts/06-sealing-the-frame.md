@@ -118,6 +118,11 @@ Being honest about the gaps matters more than the features:
   talking, how often, and whether it's spans or metrics. Only the content is hidden.
 - **Gateway state loss.** If the gateway restarts it forgets the replay windows, and an attacker who
   recorded frames could replay them in that gap until the real node sends something newer.
+- **Approved-algorithm lists.** ChaCha20-Poly1305 is as strong as AES-256-GCM and better suited to
+  small devices without AES hardware, which is why I chose it. But it is not on the NIST or CNSA
+  approved lists, and some environments only allow what is. Swapping to AES-256-GCM is one line, with
+  the same nonce and tag sizes, so nothing about the frame changes. "Approved" and "secure" are
+  different lists, and it's worth knowing which one you're being asked for.
 
 Each of those is a real limitation, and each one is also exactly the kind of thing a spec should say
 out loud rather than leave the implementer to discover.
