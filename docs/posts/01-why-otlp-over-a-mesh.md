@@ -66,8 +66,7 @@ On a wired network none of this matters. I had honestly never counted it before.
 
 ## Lesson 2: Radios make every byte expensive
 
-<!-- TODO(jake): a diagram comparing the TCP+TLS+HTTP/2 chat with a single UDP frame would land well
-     here. docs/diagrams/handshake-vs-frame.svg -->
+![Handshake versus one datagram](../diagrams/handshake-vs-frame.svg)
 
 Infrastructure-free meshes (Wi-Fi Aware, Wi-Fi Direct, Bluetooth LE, LoRa) all share a few traits that
 fight the list above:

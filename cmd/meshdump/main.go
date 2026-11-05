@@ -4,6 +4,7 @@
 //	meshdump frame.bin          # decode a frame from a file
 //	cat frame.bin | meshdump    # or from stdin
 //	meshdump -demo | meshdump   # generate a sample frame and decode it
+//	meshdump -listen 127.0.0.1:4319   # wait for one UDP datagram and decode it
 //
 // With -demo it writes a sample frame's raw bytes to stdout instead, which is
 // handy for piping into other tools (xxd, nc, meshdump itself).
@@ -22,13 +23,18 @@ package main
 // is not used is a compile error, not a warning. We hit that when "errors"
 // stopped being used and had to be removed.
 import (
+	"context"      // cancellation and timeouts for the -listen mode
 	"encoding/hex" // hex.Dump: the classic 16-bytes-per-row hexdump
+	"errors"       // errors.New
 	"flag"         // command-line flags like -demo
 	"fmt"          // formatted printing
 	"io"           // io.Writer, io.ReadAll
+	"net"          // net.UDPAddr in the receive handler
 	"os"           // os.Stdin, os.Stdout, os.Exit, os.ReadFile
+	"time"         // time.Duration for the listen timeout
 
-	"github.com/jakesky45/otlp-lite-mesh/pkg/frame" // our own package, imported by full module path
+	"github.com/jakesky45/otlp-lite-mesh/pkg/frame" // our own packages, imported by full module path
+	"github.com/jakesky45/otlp-lite-mesh/pkg/transport/udp"
 )
 
 func main() {
@@ -37,6 +43,7 @@ func main() {
 	// known until flag.Parse() runs below and fills it in. That is why we read
 	// it as *demo (the * means "the value this pointer points at").
 	demo := flag.Bool("demo", false, "write a sample frame's raw bytes to stdout and exit")
+	listen := flag.String("listen", "", "receive one UDP datagram on this address (e.g. 127.0.0.1:4319 or 239.42.0.1:4319) and dump it")
 
 	// LEARN: flag.Usage is a package-level variable that holds a function.
 	// We replace it with our own anonymous function (a function with no name,
@@ -44,7 +51,7 @@ func main() {
 	// flag list. Functions are ordinary values in Go: you can store them in
 	// variables, pass them as arguments, return them.
 	flag.Usage = func() {
-		fmt.Fprintf(os.Stderr, "usage: meshdump [-demo] [file]\n\n")
+		fmt.Fprintf(os.Stderr, "usage: meshdump [-demo | -listen addr] [file]\n\n")
 		flag.PrintDefaults()
 	}
 	flag.Parse()
@@ -71,7 +78,16 @@ func main() {
 	// LEARN: flag.Arg(0) is the first argument AFTER the flags, here an
 	// optional filename. It returns "" if there isn't one. Two return values
 	// (result, error) is how nearly every Go function that can fail is shaped.
-	data, err := readInput(flag.Arg(0))
+	// LEARN: declare first, assign in branches. Both branches fill the same
+	// two variables, so they are declared once with "var" and assigned with
+	// "=" inside the if/else; ":=" there would create new, block-scoped ones.
+	var data []byte
+	var err error
+	if *listen != "" {
+		data, err = listenOne(*listen, 30*time.Second)
+	} else {
+		data, err = readInput(flag.Arg(0))
+	}
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "meshdump:", err)
 		os.Exit(1)
@@ -86,6 +102,39 @@ func main() {
 	if err != nil {
 		os.Exit(1)
 	}
+}
+
+// listenOne waits for a single UDP datagram on addr and returns its bytes.
+// It is the tcpdump substitute: point a sender at it and see what arrived.
+func listenOne(addr string, timeout time.Duration) ([]byte, error) {
+	rx, err := udp.NewReceiver(addr)
+	if err != nil {
+		return nil, err
+	}
+	defer rx.Close()
+	fmt.Fprintf(os.Stderr, "meshdump: listening on %s for one datagram (timeout %s)\n", rx.LocalAddr(), timeout)
+
+	// LEARN: context.WithTimeout gives a context that cancels itself after
+	// the duration. cancel() can also be called early, which the handler
+	// does as soon as one datagram arrives, and that stops rx.Run.
+	ctx, cancel := context.WithTimeout(context.Background(), timeout)
+	defer cancel()
+
+	var got []byte
+	err = rx.Run(ctx, func(raw []byte, from *net.UDPAddr) {
+		if got == nil {
+			got = raw
+			fmt.Fprintf(os.Stderr, "meshdump: %d bytes from %s\n", len(raw), from)
+			cancel()
+		}
+	})
+	if err != nil {
+		return nil, err
+	}
+	if got == nil {
+		return nil, errors.New("no datagram received before the timeout")
+	}
+	return got, nil
 }
 
 // readInput returns the whole contents of the named file, or of stdin when

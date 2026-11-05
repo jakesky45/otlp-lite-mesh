@@ -41,7 +41,7 @@ the cloud.
 - [Part 4: Fitting a Span in 256 Bytes](posts/04-fitting-a-span-in-256-bytes.html)
 - [Part 5: When Compression Makes Things Bigger](posts/05-when-compression-makes-things-bigger.html)
 - [Part 6: No TLS, So What Instead? Sealing the Frame](posts/06-sealing-the-frame.html)
-- Part 7: No Handshake: UDP Multicast on 4319 *(coming soon)*
+- [Part 7: No Handshake: UDP Multicast on 4319](posts/07-udp-multicast.html)
 - Part 8: Hydrating Back Into OTLP and gRPC *(coming soon)*
 - Part 9: Watching a Trace Cross the Mesh *(coming soon)*
 - Part 10: What the Spec Got Wrong, and What's Next *(coming soon)*

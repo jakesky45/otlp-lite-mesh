@@ -1,0 +1,61 @@
+<mxfile host="app.diagrams.net" version="29.5.5">
+  <diagram name="Page-1" id="otlp-lite-mesh-handshake-vs-frame">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" parent="1" vertex="1" value="Sending one span: standard OTLP/gRPC on the left, OTLP-Lite-Mesh over UDP on the right" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=13;">
+          <mxGeometry x="40" y="30" width="760" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- LEFT: TCP + TLS + HTTP/2 -->
+        <mxCell id="la" parent="1" vertex="1" value="app" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;strokeColor=#788AA3;fillColor=#FFFFFF;">
+          <mxGeometry x="60" y="80" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lc" parent="1" vertex="1" value="collector" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;strokeColor=#788AA3;fillColor=#FFFFFF;">
+          <mxGeometry x="320" y="80" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ll1" parent="1" edge="1" style="endArrow=none;html=1;dashed=1;strokeColor=#788AA3;"><mxGeometry relative="1" as="geometry"><mxPoint x="100" y="110" as="sourcePoint"/><mxPoint x="100" y="470" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="ll2" parent="1" edge="1" style="endArrow=none;html=1;dashed=1;strokeColor=#788AA3;"><mxGeometry relative="1" as="geometry"><mxPoint x="360" y="110" as="sourcePoint"/><mxPoint x="360" y="470" as="targetPoint"/></mxGeometry></mxCell>
+
+        <!-- arrows left -->
+        <mxCell id="a1" parent="1" edge="1" style="endArrow=classic;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;strokeColor=#788AA3;"><mxGeometry relative="1" as="geometry"><mxPoint x="100" y="130" as="sourcePoint"/><mxPoint x="360" y="130" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="a1t" parent="1" vertex="1" value="TCP SYN" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=bottom;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=10;"><mxGeometry x="160" y="112" width="140" height="18" as="geometry"/></mxCell>
+        <mxCell id="a2" parent="1" edge="1" style="endArrow=classic;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;strokeColor=#788AA3;"><mxGeometry relative="1" as="geometry"><mxPoint x="360" y="155" as="sourcePoint"/><mxPoint x="100" y="155" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="a2t" parent="1" vertex="1" value="SYN-ACK" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=bottom;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=10;"><mxGeometry x="160" y="137" width="140" height="18" as="geometry"/></mxCell>
+        <mxCell id="a3" parent="1" edge="1" style="endArrow=classic;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;strokeColor=#788AA3;"><mxGeometry relative="1" as="geometry"><mxPoint x="100" y="180" as="sourcePoint"/><mxPoint x="360" y="180" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="a3t" parent="1" vertex="1" value="ACK + TLS ClientHello" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=bottom;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=10;"><mxGeometry x="160" y="162" width="140" height="18" as="geometry"/></mxCell>
+        <mxCell id="a4" parent="1" edge="1" style="endArrow=classic;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;strokeColor=#E07A5F;strokeWidth=2;"><mxGeometry relative="1" as="geometry"><mxPoint x="360" y="215" as="sourcePoint"/><mxPoint x="100" y="215" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="a4t" parent="1" vertex="1" value="ServerHello + certificate chain (2-6 KB)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=bottom;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#E07A5F;fontSize=10;"><mxGeometry x="130" y="197" width="200" height="18" as="geometry"/></mxCell>
+        <mxCell id="a5" parent="1" edge="1" style="endArrow=classic;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;strokeColor=#788AA3;"><mxGeometry relative="1" as="geometry"><mxPoint x="100" y="245" as="sourcePoint"/><mxPoint x="360" y="245" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="a5t" parent="1" vertex="1" value="TLS Finished + HTTP/2 preface + SETTINGS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=bottom;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=10;"><mxGeometry x="130" y="227" width="200" height="18" as="geometry"/></mxCell>
+        <mxCell id="a6" parent="1" edge="1" style="endArrow=classic;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;strokeColor=#788AA3;"><mxGeometry relative="1" as="geometry"><mxPoint x="360" y="275" as="sourcePoint"/><mxPoint x="100" y="275" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="a6t" parent="1" vertex="1" value="SETTINGS + ACK" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=bottom;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=10;"><mxGeometry x="160" y="257" width="140" height="18" as="geometry"/></mxCell>
+        <mxCell id="a7" parent="1" edge="1" style="endArrow=classic;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;strokeColor=#B2C9AB;strokeWidth=3;"><mxGeometry relative="1" as="geometry"><mxPoint x="100" y="315" as="sourcePoint"/><mxPoint x="360" y="315" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="a7t" parent="1" vertex="1" value="HEADERS + DATA: the span, at last" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=bottom;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#393C56;fontSize=10;fontStyle=1;"><mxGeometry x="130" y="297" width="200" height="18" as="geometry"/></mxCell>
+        <mxCell id="a8" parent="1" edge="1" style="endArrow=classic;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;strokeColor=#788AA3;"><mxGeometry relative="1" as="geometry"><mxPoint x="360" y="345" as="sourcePoint"/><mxPoint x="100" y="345" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="a8t" parent="1" vertex="1" value="ACK, response HEADERS + DATA" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=bottom;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=10;"><mxGeometry x="130" y="327" width="200" height="18" as="geometry"/></mxCell>
+        <mxCell id="a9" parent="1" edge="1" style="endArrow=classic;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;strokeColor=#788AA3;dashed=1;"><mxGeometry relative="1" as="geometry"><mxPoint x="100" y="380" as="sourcePoint"/><mxPoint x="360" y="380" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="a9t" parent="1" vertex="1" value="PING / WINDOW_UPDATE, to keep it alive..." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=bottom;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=10;"><mxGeometry x="130" y="362" width="200" height="18" as="geometry"/></mxCell>
+        <mxCell id="lsum" parent="1" vertex="1" value="3 round trips and several KB before the span moves. Cheap per span afterwards, but only if the connection survives." style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=11;"><mxGeometry x="60" y="410" width="340" height="60" as="geometry"/></mxCell>
+
+        <!-- divider -->
+        <mxCell id="div" parent="1" edge="1" style="endArrow=none;html=1;strokeColor=#788AA3;dashed=1;"><mxGeometry relative="1" as="geometry"><mxPoint x="430" y="80" as="sourcePoint"/><mxPoint x="430" y="470" as="targetPoint"/></mxGeometry></mxCell>
+
+        <!-- RIGHT: UDP -->
+        <mxCell id="ra" parent="1" vertex="1" value="edge node" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;strokeColor=#788AA3;fillColor=#FFFFFF;">
+          <mxGeometry x="470" y="80" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rc" parent="1" vertex="1" value="gateway" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;strokeColor=#788AA3;fillColor=#F2CC8F;">
+          <mxGeometry x="720" y="80" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rl1" parent="1" edge="1" style="endArrow=none;html=1;dashed=1;strokeColor=#788AA3;"><mxGeometry relative="1" as="geometry"><mxPoint x="510" y="110" as="sourcePoint"/><mxPoint x="510" y="470" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="rl2" parent="1" edge="1" style="endArrow=none;html=1;dashed=1;strokeColor=#788AA3;"><mxGeometry relative="1" as="geometry"><mxPoint x="760" y="110" as="sourcePoint"/><mxPoint x="760" y="470" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="b1" parent="1" edge="1" style="endArrow=classic;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;strokeColor=#B2C9AB;strokeWidth=3;"><mxGeometry relative="1" as="geometry"><mxPoint x="510" y="150" as="sourcePoint"/><mxPoint x="760" y="150" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="b1t" parent="1" vertex="1" value="one UDP datagram: 279 bytes, the sealed span" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=bottom;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#393C56;fontSize=10;fontStyle=1;"><mxGeometry x="520" y="132" width="230" height="18" as="geometry"/></mxCell>
+        <mxCell id="rsum" parent="1" vertex="1" value="That's it. No reply, no state, nothing to keep alive.&lt;br&gt;&lt;br&gt;Lost? Gone. Nobody knows. For telemetry that is an acceptable trade; for a bank transfer it would not be." style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=11;"><mxGeometry x="470" y="180" width="330" height="90" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
