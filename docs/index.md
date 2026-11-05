@@ -37,7 +37,7 @@ the cloud.
 
 - [Part 1: Why OTLP Over a Mesh?](posts/01-why-otlp-over-a-mesh.html)
 - [Part 2: Anatomy of a 24-Byte Header](posts/02-anatomy-of-a-24-byte-header.html)
-- Part 3: What's Actually Inside an OTLP Span *(coming soon)*
+- [Part 3: What's Actually Inside an OTLP Span](posts/03-whats-inside-an-otlp-span.html)
 - Part 4: Fitting a Span in 256 Bytes *(coming soon)*
 - Part 5: When Compression Makes Things Bigger *(coming soon)*
 - Part 6: No TLS, So What Instead? Sealing the Frame *(coming soon)*

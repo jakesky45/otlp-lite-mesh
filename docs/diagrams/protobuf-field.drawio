@@ -1,0 +1,48 @@
+<mxfile host="app.diagrams.net" version="29.5.5">
+  <diagram name="Page-1" id="otlp-lite-mesh-protobuf-field">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" parent="1" vertex="1" value="How the span's &lt;b&gt;name&lt;/b&gt; field (field number 5) looks on the wire: 27 bytes" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=13;">
+          <mxGeometry x="80" y="50" width="640" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Tag byte -->
+        <mxCell id="tag" parent="1" vertex="1" value="tag&lt;br&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;0x2a&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#393C56;strokeColor=#788AA3;fillColor=#B2C9AB;">
+          <mxGeometry x="80" y="100" width="80" height="60" as="geometry" />
+        </mxCell>
+        <!-- Length byte -->
+        <mxCell id="len" parent="1" vertex="1" value="length&lt;br&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;0x19 = 25&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;strokeColor=#788AA3;fillColor=#F2CC8F;">
+          <mxGeometry x="160" y="100" width="80" height="60" as="geometry" />
+        </mxCell>
+        <!-- Value -->
+        <mxCell id="val" parent="1" vertex="1" value="value: 25 bytes of UTF-8&lt;br&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;47 45 54 20 2f 61 70 69 2f 76 31 2f 72 65 61 64 69 6e 67 73 2f 7b 69 64 7d&lt;br&gt;&quot;GET /api/v1/readings/{id}&quot;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;strokeColor=#788AA3;fillColor=#FFFFFF;">
+          <mxGeometry x="240" y="100" width="480" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Tag breakdown -->
+        <mxCell id="tagnote" parent="1" vertex="1" value="&lt;b&gt;The tag byte&lt;/b&gt; packs two things:&lt;br&gt;0x2a = 0b00101 010&lt;br&gt;upper bits 00101 = field number &lt;b&gt;5&lt;/b&gt; (name)&lt;br&gt;lower 3 bits 010 = wire type &lt;b&gt;2&lt;/b&gt; (length-delimited: string, bytes or nested message)&lt;br&gt;&lt;br&gt;So the field's name never goes on the wire, only its number. That is why the receiver needs the same schema." style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;rounded=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=11;">
+          <mxGeometry x="80" y="180" width="320" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="tagline" parent="1" edge="1" source="tagnote" target="tag" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;html=1;strokeColor=#788AA3;dashed=1;endArrow=classic;exitX=0.1;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Length breakdown -->
+        <mxCell id="lennote" parent="1" vertex="1" value="&lt;b&gt;The length&lt;/b&gt; is a varint: small numbers take 1 byte, numbers up to 16383 take 2, and so on. 25 fits in one byte.&lt;br&gt;&lt;br&gt;Timestamps use a different trick: &lt;b&gt;fixed64&lt;/b&gt;, always 8 bytes, because a nanosecond epoch time is so large a varint would need 9." style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;rounded=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#46495D;fontSize=11;">
+          <mxGeometry x="420" y="180" width="300" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="lenline" parent="1" edge="1" source="lennote" target="len" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;html=1;strokeColor=#788AA3;dashed=1;endArrow=classic;exitX=0.1;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Overhead summary -->
+        <mxCell id="sum" parent="1" vertex="1" value="Overhead for this field: 2 bytes on 25 bytes of content. Protobuf is cheap per field. The span is big because of &lt;i&gt;what&lt;/i&gt; is in it, not how it is encoded." style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontColor=#E07A5F;fontSize=11;">
+          <mxGeometry x="80" y="320" width="640" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
