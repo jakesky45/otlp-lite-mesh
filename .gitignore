@@ -1,0 +1,17 @@
+# Downloaded tools (Jaeger binary etc.) – never committed
+tools/
+
+# Jekyll build output
+docs/_site/
+docs/.jekyll-cache/
+
+# Go
+bin/
+*.test
+*.out
+coverage.html
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/
