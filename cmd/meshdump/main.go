@@ -50,16 +50,21 @@ func main() {
 	flag.Parse()
 
 	if *demo {
-		// LEARN: the most common line shape in Go. The "if" has an initialiser
-		// (err := ...) then a condition (err != nil). err only exists inside
-		// this if block. Functions report failure by returning an error value;
-		// there are no exceptions.
-		if err := writeDemo(os.Stdout); err != nil {
+		// LEARN: functions that can fail return an error as their last result.
+		// nil means "no error". So: run the function, keep the error, test it.
+		err := writeDemo(os.Stdout)
+		if err != nil {
 			fmt.Fprintln(os.Stderr, "meshdump:", err)
 			// LEARN: os.Exit(1) ends the process with a non-zero code so shells
 			// and scripts know it failed. A normal "return" from main is exit 0.
 			os.Exit(1)
 		}
+		// LEARN: most Go code squashes those two lines into one:
+		//     if err := writeDemo(os.Stdout); err != nil { ... }
+		// The part before the ";" runs first, the part after is the condition.
+		// It means exactly the same thing; err just stops existing after the
+		// block. You'll see the short form everywhere, so it's worth getting
+		// used to, but the long form is fine and we'll use it for now.
 		return
 	}
 
@@ -73,7 +78,12 @@ func main() {
 	}
 	// dump has already printed the error inline with the bytes; just signal
 	// failure through the exit code so scripts can tell valid from invalid.
-	if err := dump(os.Stdout, data); err != nil {
+	//
+	// LEARN: "=" not ":=" here, because err was already declared by the
+	// readInput line above. := declares a new variable; = assigns to an
+	// existing one. Mixing them up is a compile error you'll meet often.
+	err = dump(os.Stdout, data)
+	if err != nil {
 		os.Exit(1)
 	}
 }
