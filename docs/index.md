@@ -40,7 +40,7 @@ the cloud.
 - [Part 3: What's Actually Inside an OTLP Span](posts/03-whats-inside-an-otlp-span.html)
 - [Part 4: Fitting a Span in 256 Bytes](posts/04-fitting-a-span-in-256-bytes.html)
 - [Part 5: When Compression Makes Things Bigger](posts/05-when-compression-makes-things-bigger.html)
-- Part 6: No TLS, So What Instead? Sealing the Frame *(coming soon)*
+- [Part 6: No TLS, So What Instead? Sealing the Frame](posts/06-sealing-the-frame.html)
 - Part 7: No Handshake: UDP Multicast on 4319 *(coming soon)*
 - Part 8: Hydrating Back Into OTLP and gRPC *(coming soon)*
 - Part 9: Watching a Trace Cross the Mesh *(coming soon)*
