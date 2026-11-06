@@ -145,13 +145,30 @@ type Sealer struct {
 	counter uint32 // the next counter to use
 }
 
-// NewSealer derives the node's key and starts its counter at zero.
+// NewSealer derives the node's key from the master and starts its counter at
+// zero. Use it where the master key is available, such as tests. Devices in
+// the field should use NewSealerFromKey so they never hold the master
+// (SPEC.md §8.1).
 //
 // LEARN: returning *Sealer (a pointer) rather than Sealer is deliberate: the
 // Sealer has state (the counter) that Seal must change, and a method can only
 // change the caller's copy through a pointer.
 func NewSealer(master MasterKey, node frame.NodeID) (*Sealer, error) {
-	aead, err := newAEAD(master, node)
+	key, err := NodeKey(master, node)
+	if err != nil {
+		return nil, err
+	}
+	return NewSealerFromKey(key, node)
+}
+
+// NewSealerFromKey builds a Sealer from a node's own 32-byte key, as produced
+// by NodeKey at enrolment. The device holding it cannot derive any other
+// node's key, so a captured device exposes only its own traffic.
+func NewSealerFromKey(nodeKey []byte, node frame.NodeID) (*Sealer, error) {
+	if len(nodeKey) != KeySize {
+		return nil, fmt.Errorf("%w: node key is %d bytes, want %d", ErrBadKey, len(nodeKey), KeySize)
+	}
+	aead, err := chacha20poly1305.New(nodeKey)
 	if err != nil {
 		return nil, err
 	}
